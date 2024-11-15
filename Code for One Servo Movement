@@ -1,0 +1,28 @@
+#include <ESP32Servo.h>
+
+
+static const int servoPin = 13;  // Pin where the servo is connected
+Servo servo1;
+
+
+void setup() {
+    Serial.begin(115200);      // Initialize serial communication at 115200 baud rate
+    servo1.setPeriodHertz(50);  // Set the frequency for the servo (50Hz typical)
+    servo1.attach(servoPin);    // Attach the servo to the specified pin
+    servo1.writeMicroseconds(500);  // Start the servo at 1000 µs (or any starting position)
+
+
+    // Gradually move the servo to 2000 µs for smooth movement
+    for (int pos = 1000; pos <= 2000; pos += 10) {  // Increment by 10 µs for smooth movement
+        servo1.writeMicroseconds(pos);  // Set the pulse width in microseconds
+        Serial.println(pos);            // Print the pulse width to the serial monitor
+        delay(20);                      // Small delay to create smooth motion
+    }
+}
+
+
+void loop() {
+    // Nothing to do here. The servo has already moved to 2000 µs smoothly.
+}
+
+
