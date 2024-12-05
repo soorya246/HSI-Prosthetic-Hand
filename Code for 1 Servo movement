@@ -1,0 +1,55 @@
+#include <ESP32Servo.h>
+
+static const int servoPin = 12;  // Pin where the servo is connected
+
+Servo servo;
+
+void setup() {
+    Serial.begin(115200);          // Initialize serial communication at 115200 baud rate
+    servo.setPeriodHertz(50);      // Set the frequency for the servo (50Hz typical)
+    servo.attach(servoPin);        // Attach the servo to the specified pin
+}
+
+void loop() {
+    // Sweep from 500 µs to 1000 µs (counterclockwise)
+    for(int pos = 500; pos <= 1000; pos += 20) {
+        servo.writeMicroseconds(pos);  // Set the pulse width in microseconds
+        Serial.println(pos);           // Print the pulse width in microseconds
+        delay(20);                     // Wait for the servo to move
+    }
+
+    // Sweep from 1000 µs to 2000 µs (counterclockwise)
+    for(int pos = 1000; pos <= 2000; pos += 20) {
+        servo.writeMicroseconds(pos);
+        Serial.println(pos);
+        delay(20);
+    }
+
+    // Sweep from 2000 µs to 2500 µs (clockwise)
+    for(int pos = 2000; pos <= 2500; pos += 20) {
+        servo.writeMicroseconds(pos);
+        Serial.println(pos);
+        delay(20);
+    }
+
+    // Sweep back from 2500 µs to 2000 µs
+    for(int pos = 2500; pos >= 2000; pos -= 20) {
+        servo.writeMicroseconds(pos);
+        Serial.println(pos);
+        delay(20);
+    }
+
+    // Sweep back from 2000 µs to 1000 µs
+    for(int pos = 2000; pos >= 1000; pos -= 20) {
+        servo.writeMicroseconds(pos);
+        Serial.println(pos);
+        delay(20);
+    }
+
+    // Sweep back from 1000 µs to 500 µs
+    for(int pos = 1000; pos >= 500; pos -= 20) {
+        servo.writeMicroseconds(pos);
+        Serial.println(pos);
+        delay(20);
+    }
+}
