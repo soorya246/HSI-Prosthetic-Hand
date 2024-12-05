@@ -1,0 +1,41 @@
+#include <ESP32Servo.h>
+
+// Pin assignment for the servo
+static const int servoPin = 13;  // Connect your servo to this pin
+
+// Create a Servo object
+Servo servo;
+
+void setup() {
+    Serial.begin(115200);               // Initialize serial communication
+    servo.attach(servoPin, 500, 2500);  // Attach the servo with pulse range 500–2500 µs
+    Serial.println("Enter an angle (0-180) to move the servo.");
+}
+
+void loop() {
+    // Check if data is available on the Serial input
+    if (Serial.available() > 0) {
+        String input = Serial.readStringUntil('\n');  // Read the input as a string
+        input.trim();                                 // Remove extra spaces or newlines
+        int angle = input.toInt();                    // Convert input to an integer
+
+        // Validate the angle input
+        if (angle >= 0 && angle <= 180) {
+            Serial.print("Moving servo to ");
+            Serial.print(angle);
+            Serial.println(" degrees...");
+            
+            // Map the angle to microseconds (1000–2000 range)
+            int pulseWidth = map(angle, 0, 180, 1000, 2000);
+            servo.writeMicroseconds(pulseWidth);  // Move the servo to the specified position
+            delay(500);                           // Allow time for the servo to reach the position
+        } else {
+            Serial.println("Invalid input! Please enter an angle between 0 and 180.");
+        }
+
+        // Clear the Serial input buffer
+        while (Serial.available() > 0) {
+            Serial.read();
+        }
+    }
+}
