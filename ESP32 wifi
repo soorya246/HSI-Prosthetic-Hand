@@ -1,0 +1,39 @@
+#include <WiFi.h>
+#include <ESPAsyncWebServer.h>
+
+const char* ssid     = "Alicia"; //replace ssid and password with an actual wifi server for esp32 to connect to
+const char* password = "12345";
+
+AsyncWebServer server(80);
+//WiFiServer server(80); dont ned 2 wifi servers
+
+void setup() {
+  delay(500);  // Delay for Serial Monitor to sync
+  Serial.begin(115200);  // Start serial communication at 115200 baud
+  Serial.println("Starting setup...");
+  Serial.print("Connecting to ");
+  Serial.println(ssid);
+  WiFi.begin(ssid, password);
+  int attempts = 0;
+  while (WiFi.status() != WL_CONNECTED && attempts < 20) {  // Limit attempts to avoid infinite loop
+    delay(1000);
+    Serial.print(".");
+    attempts++;
+  }
+
+  if (WiFi.status() == WL_CONNECTED) {
+    Serial.println("\nWiFi connected.");
+    Serial.print("IP address: ");
+    Serial.println(WiFi.localIP());  // Print IP address
+    server.begin();
+  } else {
+    Serial.println("\nFailed to connect to WiFi.");
+  }
+  server.on("/",HTTP_GET,[](AsyncWebServerRequest *request){
+    request->send(200,"text/html","<h1>hello!<h1>");
+    });
+  server.begin();
+}
+void loop() {
+  // Main code runs here
+}
