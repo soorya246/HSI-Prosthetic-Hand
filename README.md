@@ -5,7 +5,6 @@ The prosthetic team at LHNT aims to develop a functional prosthetic hand, simila
 ## File Usage Instructions
 ### Prerequisites
 - ESP32 - This project uses the ESP32 Wroom, a microcontroller great for Bluetooth and Wifi interfacing. Any similar microcontroller will work, but some steps, such as driver and library installation, will need to be modified.
-  - Amazon link: https://www.amazon.com/ESP-WROOM-32-Development-Microcontroller-Integrated-Compatible/dp/B08D5ZD528/ref=sr_1_3?crid=1VQRWBYVUZ902&dib=eyJ2IjoiMSJ9.is-SH_RLGHiZZUrqvTWU_DFFr6XAPKtIzbKWDMtYTKPfP4pfKF5pJnrg5SumFDmGaOotmDMNsjLThAHFW5tguzhOgWdXEc5Yt9X_JYzKxn1NDjjt2MuHnbpO144NCvrHMI8L352Y_CkKsvyTvouuBr4tTC_p0pEAEMhhnAdAeWR5ADbyHhJhVjtOsdwjIxjUzHsmwhfmsBG9zisk2F-LNG_U_q81y01Y7-mTk6nINhw.l5CQTChnKxwzLCJbULXnM_PgUzzCN2kYVPG615fd3Zk&dib_tag=se&keywords=esp32&qid=1740040638&sprefix=esp3%2Caps%2C294&sr=8-3&th=1
     
 - Arduino IDE, version 2.3.3. Install Link - https://www.arduino.cc/en/software
   - Necessary libraries - ESP32Servo, WiFi, ESPAsyncWebServer
