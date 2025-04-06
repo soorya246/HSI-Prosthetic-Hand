@@ -76,77 +76,77 @@ void loop() {
   if (client) {                            // If a new client connects,
     Serial.println("New Client.");          // Print a message to the serial monitor
     String currentLine = "";               // Create a String to hold incoming data from the client
-    while (client.connected()) {           // Loop while the client is connected
-      if (client.available()) {            // If there’s data available to read from the client,
-        char c = client.read();            // Read a byte,
-        Serial.write(c);                   // Print it to the serial monitor
-        header += c;
-        if (c == '\n') {                   // If the byte is a newline character
-          // If the current line is blank, two newlines in a row indicate the end of the HTTP request,
-          // so send a response:
-          if (currentLine.length() == 0) {
-            // HTTP headers always start with a response code (e.g., HTTP/1.1 200 OK)
-            // and a content-type so the client knows what’s coming, followed by a blank line:
-            client.println("HTTP/1.1 200 OK");
-            client.println("Content-type:text/html");
-            client.println("Connection: close");
-            client.println();
-            // Turn the GPIOs on and off
-            if (header.indexOf("GET /26/on") >= 0) {
-              Serial.println("GPIO 26 on");
-              output26State = "on";
-              digitalWrite(output26, HIGH);
-              rotate_clockwise();  // Rotate clockwise when the button is pressed
-            } else if (header.indexOf("GET /26/off") >= 0) {
-              Serial.println("GPIO 26 off");
-              output26State = "off";
-              digitalWrite(output26, LOW);
-              rotate_counterclockwise();  // Rotate counterclockwise when the button is pressed
-            } else if (header.indexOf("GET /27/on") >= 0) {
-              Serial.println("GPIO 27 on");
-              output27State = "on";
-              digitalWrite(output27, HIGH);
-            } else if (header.indexOf("GET /27/off") >= 0) {
-              Serial.println("GPIO 27 off");
-              output27State = "off";
-              digitalWrite(output27, LOW);
-            }
-            // Display the HTML web page
-            client.println("<!DOCTYPE html><html>");
-            client.println("<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
-            client.println("<link rel=\"icon\" href=\"data:,\">");
-            // CSS to style the on/off buttons
-            client.println("<style>html { font-family: Helvetica; display: inline-block; margin: 0px auto; text-align: center;}");
-            client.println(".button { background-color: #4CAF50; border: none; color: white; padding: 16px 40px;");
-            client.println("text-decoration: none; font-size: 30px; margin: 2px; cursor: pointer;}");
-            client.println(".button2 {background-color: #555555;}</style></head>");
-            // Web Page Heading
-            client.println("<body><h1>ESP32 Web Server</h1>");
-            // Display current state and ON/OFF buttons for GPIO 26
-            client.println("<p>GPIO 26 - State " + output26State + "</p>");
-            if (output26State == "off") {
-              client.println("<p><a href=\"/26/on\"><button class=\"button\">ON</button></a></p>");
-            } else {
-              client.println("<p><a href=\"/26/off\"><button class=\"button button2\">OFF</button></a></p>");
-            }
-            // Display current state and ON/OFF buttons for GPIO 27
-            client.println("<p>GPIO 27 - State " + output27State + "</p>");
-            if (output27State == "off") {
-              client.println("<p><a href=\"/27/on\"><button class=\"button\">ON</button></a></p>");
-            } else {
-              client.println("<p><a href=\"/27/off\"><button class=\"button button2\">OFF</button></a></p>");
-            }
-            client.println("</body></html>");
-            client.println();  // End of HTTP response
-            break;
-          } else { // If you got a newline, clear currentLine
-            currentLine = "";
-          }
-        } else if (c != '\r') {  // If you got anything else but a carriage return character,
-          currentLine += c;      // Add it to the end of the currentLine
-        }
-      }
-    }
+    // while (client.connected()) {           // Loop while the client is connected
+    //   if (client.available()) {            // If there’s data available to read from the client,
+    //     char c = client.read();            // Read a byte,
+    //     Serial.write(c);                   // Print it to the serial monitor
+    //     header += c;
+    //     if (c == '\n') {                   // If the byte is a newline character
+    //       // If the current line is blank, two newlines in a row indicate the end of the HTTP request,
+    //       // so send a response:
+    //       if (currentLine.length() == 0) {
+    //         // HTTP headers always start with a response code (e.g., HTTP/1.1 200 OK)
+    //         // and a content-type so the client knows what’s coming, followed by a blank line:
+    //         client.println("HTTP/1.1 200 OK");
+    //         client.println("Content-type:text/html");
+    //         client.println("Connection: close");
+    //         client.println();
+    //         // Turn the GPIOs on and off
+    //         if (header.indexOf("GET /26/on") >= 0) {
+    //           Serial.println("GPIO 26 on");
+    //           output26State = "on";
+    //           digitalWrite(output26, HIGH);
+    //           rotate_clockwise();  // Rotate clockwise when the button is pressed
+    //         } else if (header.indexOf("GET /26/off") >= 0) {
+    //           Serial.println("GPIO 26 off");
+    //           output26State = "off";
+    //           digitalWrite(output26, LOW);
+    //           rotate_counterclockwise();  // Rotate counterclockwise when the button is pressed
+    //         } else if (header.indexOf("GET /27/on") >= 0) {
+    //           Serial.println("GPIO 27 on");
+    //           output27State = "on";
+    //           digitalWrite(output27, HIGH);
+    //         } else if (header.indexOf("GET /27/off") >= 0) {
+    //           Serial.println("GPIO 27 off");
+    //           output27State = "off";
+    //           digitalWrite(output27, LOW);
+    //         }
+    //         // Display the HTML web page
+    //         client.println("<!DOCTYPE html><html>");
+    //         client.println("<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
+    //         client.println("<link rel=\"icon\" href=\"data:,\">");
+    //         // CSS to style the on/off buttons
+    //         client.println("<style>html { font-family: Helvetica; display: inline-block; margin: 0px auto; text-align: center;}");
+    //         client.println(".button { background-color: #4CAF50; border: none; color: white; padding: 16px 40px;");
+    //         client.println("text-decoration: none; font-size: 30px; margin: 2px; cursor: pointer;}");
+    //         client.println(".button2 {background-color: #555555;}</style></head>");
+    //         // Web Page Heading
+    //         client.println("<body><h1>ESP32 Web Server</h1>");
+    //         // Display current state and ON/OFF buttons for GPIO 26
+    //         client.println("<p>GPIO 26 - State " + output26State + "</p>");
+    //         if (output26State == "off") {
+    //           client.println("<p><a href=\"/26/on\"><button class=\"button\">ON</button></a></p>");
+    //         } else {
+    //           client.println("<p><a href=\"/26/off\"><button class=\"button button2\">OFF</button></a></p>");
+    //         }
+    //         // Display current state and ON/OFF buttons for GPIO 27
+    //         client.println("<p>GPIO 27 - State " + output27State + "</p>");
+    //         if (output27State == "off") {
+    //           client.println("<p><a href=\"/27/on\"><button class=\"button\">ON</button></a></p>");
+    //         } else {
+    //           client.println("<p><a href=\"/27/off\"><button class=\"button button2\">OFF</button></a></p>");
+    //         }
+    //         client.println("</body></html>");
+    //         client.println();  // End of HTTP response
+    //         break;
+    //       } else { // If you got a newline, clear currentLine
+    //         currentLine = "";
+    //       }
+    //     } else if (c != '\r') {  // If you got anything else but a carriage return character,
+    //       currentLine += c;      // Add it to the end of the currentLine
+    //     }
+    //   }
+    // }
     // Clear the header variable
     header = "";
     // Close the connection
