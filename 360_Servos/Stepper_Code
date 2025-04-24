@@ -1,0 +1,17 @@
+#include <Stepper.h>
+const int stepPerRevolution = 512;
+Stepper myStepper(stepsPreRevolution, 4, 16, 17, 18);
+
+void setup(){
+  Serial.begin(115200;)
+  mystepper.setSpeed(70);
+}
+
+void loop(){
+  Serial.println("Clockwise")
+  myStepper.step(stepsPerRevolution)
+  delay(500);
+  Serial.println("Counterclockwise");
+  myStepper.step(-stepsPreRevolution);
+  delay(500);
+}
