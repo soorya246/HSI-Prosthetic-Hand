@@ -1,6 +1,6 @@
 # Project Overview
 
-The prosthetic team at LHNT aims to develop a functional prosthetic hand, similar to real-life medical prosthetics through the actuation, 3D modeling, and hardware-software integration teams. The prosthetic hand currently has one degree of freedom, an open and closed hand, but we aim to achieve two degrees of freedom through individual mobility in each finger. These movements are performed through a WiFi connection, where we can manually select 'buttons' on the IP website generated from the ESP32 to open and close the hand.
+The prosthetic team at LHNT aims to develop a functional prosthetic hand, similar to real-life medical prosthetics through the actuation, 3D modeling, and hardware-software integration teams. The prosthetic hand currently has one degree of freedom with servos, an open and closed hand, but we aim to achieve two degrees of freedom through individual mobility in each finger. The wrist rotates with a stepper motor and the elbow extends with a linear actuator. These movements are performed through a WiFi connection, where we can manually select 'buttons' on the IP website generated from the ESP32 to open and close the hand.
 
 ## File Usage Instructions
 ### Prerequisites
@@ -23,7 +23,7 @@ The setup for running the files above is as follows:
 
 ## Current Goals/Limitations
 
-3D Modeling - The 3D modeling team is currently working on developing a wearable mount and a servo holder to implement full wearability.
+3D Modeling - The 3D modeling team is currently working on developing a wearable mount to implement full wearability.
 
 Actuation - The Actuation team is working towards using linear actuators and ensuring taut strings to properly close the hand upon servo movement.
 
