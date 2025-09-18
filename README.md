@@ -34,15 +34,13 @@ Hardware-Software Interfacing (HSI) - The HSI team is working towards redesignin
 
 *Actuation Team*:
 - Design the joints and tensile forces behind them to allow for the opening and closing of the hand.
-- Team Lead: Hailey Hyde
 - Members - Dharsan Selvakumar, Hatim 
 
 *3D Modeling Team*:
 - Design the prosthetic hand and mounts necessary for servo placement and control.
-- Team Lead - Taru Mishra
 - Members: Kate Long, Liam Ignacio, Mehel Kanhere, Rahul Karthik, Rhyan Stresow, Ruba Siddiqi, Varun Sirigireddy
 
 *Hardware Software Integration*:
-- Integrate binary signals from machine learning into servo control for opening and closing the hand.
-- Team Lead - Daniel Song
-- Members - Anna Ledbetter, Soorya Narayanan, Jorge Nunez, Alicia Richard, Zara Siddiqi, Aprameya Sudharsan
+- Integrate binary signals from machine learning into servo control for opening and closing the hand
+- Designed circuit–software interfaces and signal decoding logic
+- Members - Daniel Song, Soorya Narayanan, Anna Ledbetter, Jorge Nunez, Alicia Richard, Zara Siddiqi, Aprameya Sudharsan
